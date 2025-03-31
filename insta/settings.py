@@ -125,7 +125,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 업로드 사진 저장 위치
 
-MEDIA_ROOT = BASE_DIR / 'image'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # 미디어 경로를 처리할 URL
-MEDIA_URL = '/image/'
+MEDIA_URL = '/media/'
