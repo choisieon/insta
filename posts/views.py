@@ -42,7 +42,9 @@ def comment_create(request, post_id):
         comment.post_id = post_id 
         comment.save()
         return redirect('posts:index')
-    
+
+
+@login_required
 def like(request, post_id):
     user = request.user
     post = Post.objects.get(id=post_id)
@@ -55,3 +57,15 @@ def like(request, post_id):
         #user.like_posts.add(post)
         post.like_users.add(user)
     return redirect('posts:index')
+
+def feed(request):
+    followings = request.user.followings.all()
+
+    posts = Post.objects.filter(user__in=followings)
+    form = CommentForm()
+    context = {
+        'posts': posts,
+        'form' : form,
+    
+    }
+    return render(request, 'index.html', context)
